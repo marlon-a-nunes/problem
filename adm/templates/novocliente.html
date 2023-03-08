@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Adicionar Cliente{% endblock %}
+
+{% block content %}
+    <form action="/novocliente/" method="POST">
+        
+        {% csrf_token %}
+        {{cliente.as_p}}
+        {{carro.as_p}}
+
+        <input type="submit" value="Salvar">
+    </form>
+{% endblock%}

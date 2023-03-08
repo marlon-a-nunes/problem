@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes Carros{% endblock %}
+
+{% block content %}
+    {% for carro in cliente.carros.all %}
+        <h3>Carros</h3>
+        <span>Cliente: <a href="/listaservico/{{carro.id}}">{{carro.carro}} </a></span>
+        <p>Ano: {{carro.ano}}</p>
+        <p>Placa: {{carro.placa}}</p>
+        <p><a href="/deletecarro/{{carro.id}}">Deletar Carro</a></p>
+        <p><a href="/editarcarro/{{carro.id}}">Editar carro </a></p>
+        
+        
+
+    {% endfor %}
+    <a href="{% url 'adicionarcarro' cliente.id%}">Adicionar Carro </a>
+
+    
+    
+
+{% endblock%}

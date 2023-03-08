@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Clientes{% endblock %}
+
+{% block content %}
+
+{% for cliente in clientes  %}
+    <span>Cliente: <a href="/listacarros/{{cliente.id}}">{{cliente.nome}} {{cliente.sobrenome}}</a></span>
+    <p>CPF: {{cliente.cpf}}</p>
+    <p>Telefone: {{cliente.telefone}}</p>
+    <p>Endereço: {{cliente.endereço}} nº{{cliente.número}}, {{cliente.cidade}} - {{cliente.estado}}</p>
+    <p><a href="/editarcliente/{{cliente.id}}">Editar cliente </a></p>
+    <p><a href="/deletecliente/{{cliente.id}}">Deletar Cliente</a></p>
+ 
+    {% endfor %}
+    <a href="{% url 'novocliente' %}">Adicionar Cliente </a>
+   
+
+    
+{% endblock%}
