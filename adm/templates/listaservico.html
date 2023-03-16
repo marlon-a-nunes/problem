@@ -3,13 +3,19 @@
 {% block title %}Detalhes Serviços{% endblock %}
 
 {% block content %}
-    {% for servico in carro.servicos.all %}
+    {% for servicos in carro.servicos.all %}
         <h3>Serviços</h3>
-        <p>Serviço: {{servico.serviço}}</p>
-        <p>Descrição: {{servico.descrição}}</p>
-        <p>Status: {{servico.status}}</p>
-        <p>Valor: {{servico.valor_serviço}}</p>
+        <p>Serviço: {{servicos.serviço}}</p>
+        <p>Descrição: {{servicos.descrição}}</p>
+        <p>Status: {{servicos.status}}</p>
+        <p>Valor: {{servicos.valor_serviço}}</p>
+        {% for pecas in pecas.servicos.all %}
+        <h4>Peças</h4>
+        <p>Peça: {{pecas.nome_peça}}</p>
+        {% endfor %}
+
         <p><a href="/editarservico/{{servico.id}}">Editar Serviço</a></p>
+        <p><a href="/deleteservico/{{servico.id}}">Deletar Serviço</a></p>
         
 
     {% endfor %}

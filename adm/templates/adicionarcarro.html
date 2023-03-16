@@ -6,7 +6,13 @@
     <form  method="POST">
         {% csrf_token %}
         {{carro.as_p}}
+
+        {{servico.management_form}}
         
+        <p>{% for servico_carro in servico %}
+        {{servico_carro}}
+        {% endfor %}
+        </p>
 
         <input type="submit" value="Salvar">
     </form>

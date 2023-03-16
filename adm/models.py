@@ -26,12 +26,23 @@ class Carro(models.Model):
     carro = models.CharField(max_length=50)
     ano = models.CharField(max_length=4)
     placa_tipo = models.CharField(max_length=13, choices=PLACA)
-    placa = models.CharField(max_length=8, unique=True)
+    placa = models.CharField(max_length=8, unique=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.carro
+    
+class Peça(models.Model):
+    nome_peça = models.CharField(max_length=255)
+    produto = models.CharField(max_length=255)
+    preço = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    código = models.IntegerField(unique=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    update_at = models.DateTimeField(auto_now=True, null=True)
+    
+    def __str__(self):
+        return self.nome_peça
     
 class Serviço(models.Model):
     STATUS = (
@@ -40,14 +51,17 @@ class Serviço(models.Model):
     )
     
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE, related_name='servicos', null=True)
+    pecas = models.ManyToManyField(Peça, related_name='servicos' )
     serviço = models.CharField(max_length=255)
     descrição = models.TextField()
     status = models.CharField(max_length=7, choices=STATUS)
-    valor_serviço = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_serviço = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     update_at = models.DateTimeField(auto_now=True, null=True)
     
     def __str__(self):
         return self.serviço
+    
+
     
     

@@ -7,7 +7,15 @@
         
         {% csrf_token %}
         {{cliente.as_p}}
-        {{carro.as_p}}
+        
+        {{carro.management_form}}
+        
+        {% for carro_cliente in carro %}
+        {{carro_cliente}}
+        {% endfor %}
+
+        
+        
 
         <input type="submit" value="Salvar">
     </form>
